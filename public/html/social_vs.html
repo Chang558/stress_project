@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>사회 이동성 그래프 비교</title>
+    <link rel="stylesheet" href="/css/social_vs.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <body>
+        <div class="header">
+            <h1>계층 이동 가능성 데이터와 비교해보기!</h1>
+        </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/insight_page">insight</a></li>
+            <li><a href="/first_page">introduce</a></li>
+            <li><a href="/draw_graph">draw_graph</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <form id="graphForm">
+        <div>
+            <label for="region1">지역 1:</label>
+            <select id="region1" name="region1" required>
+                <option value="광진구">광진구</option>
+                <option value="노원구">노원구</option>
+                <option value="동작구">동작구</option>
+                <option value="서초구">서초구</option>
+                <option value="구로구">구로구</option>
+                <option value="송파구">송파구</option>
+
+                <!-- 더 많은 지역 -->
+            </select>
+        </div>
+        <div>
+            <label for="region2">지역 2:</label>
+            <select id="region2" name="region2" required>
+                <option value="은평구">은평구</option>
+                <option value="양천구">양천구</option>
+                <option value="강북구">강북구</option>
+                <option value="영등포구">영등포구</option>
+                <option value="도봉구">도봉구</option>
+                <option value="서대문구">서대문구</option>
+
+                <!-- 더 많은 지역 -->
+            </select>
+        </div>
+        <div>
+            <label for="startYear">시작 연도:</label>
+            <select id="startYear" name="startYear" required>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+
+                <!-- 더 많은 연도 -->
+            </select>
+        </div>
+        <div>
+            <label for="endYear">종료 연도:</label>
+            <select id="endYear" name="endYear" required>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <!-- 더 많은 연도 -->
+            </select>
+        </div>
+        <button type="submit">그래프 보기</button>
+    </form>
+    <div id="images-container">
+        <img id="graph1" src="" alt="Graph 1" style="display: none;">
+        <img id="graph2" src="" alt="Graph 2" style="display: none;">
+    </div>
+
+    <script>
+        document.getElementById('graphForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다.
+
+            const region1 = document.getElementById('region1').value;
+            const region2 = document.getElementById('region2').value;
+            const startYear = document.getElementById('startYear').value;
+            const endYear = document.getElementById('endYear').value;
+
+            const graph1 = document.getElementById('graph1');
+            const graph2 = document.getElementById('graph2');
+
+            // 서버에서 그래프 이미지 URL을 받아와 설정합니다.
+            graph1.src = `http://192.168.1.105:8000/get_second_graph/${region1}/${region2}/${startYear}/${endYear}`;
+            graph2.src = `http://192.168.1.105:8000/get_social_mobility/${region1}/${region2}/${startYear}/${endYear}`;
+
+            // 이미지 태그를 보이게 합니다.
+            graph1.style.display = 'block';
+            graph2.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
