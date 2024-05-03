@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스트레스 지수 비교</title>
+    <link rel="stylesheet" type="text/css" href="/css/title_page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>스트레스 지수 비교</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/insight_page">insight</a></li>
+            <li><a href="/first_page">introduce</a></li>
+            <li><a href="/draw_graph">draw_graph</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="comparison-section">
+        <div class="list-container">
+            <div class="list">
+                <h2>High Stress Analysis</h2>
+                <p>1위 : 노원구</p>
+                <p>2위 : 서초구</p>
+                <p>3위 : 광진구</p>
+                <p>4위 : 구로구</p>
+                <p>5위 : 동작구</p>
+                <button id="more-info-btn-1">더 알아보기?</button>
+
+            </div>
+            <div class="vs">VS</div>
+            <div class="list">
+                <h2>Low Stress Analysis</h2>
+                <p>1위 : 은평구</p>
+                <p>2위 : 양천구</p>
+                <p>3위 : 강북구</p>
+                <p>4위 : 영등포구</p>
+                <p>5위 : 도봉구</p>
+                <button id="more-info-btn-1">더 알아보기?</button>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        © 2024 스마트인재개발원 2조(이창영, 한채빈). All rights reserved.
+    </footer>
+
+    <script>
+        const moreInfoButton1 = document.getElementById('more-info-btn-1');
+        const moreInfoButton2 = document.getElementById('more-info-btn-2');
+
+        moreInfoButton1.addEventListener('click', () => {
+            window.location.href = 'first_page';
+        });
+
+        moreInfoButton2.addEventListener('click', () => {
+            window.location.href = 'second_page.html';
+        });
+    </script>
+</body>
+</html>

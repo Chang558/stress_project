@@ -1,0 +1,19 @@
+#png 파일
+*.png
+
+# node_module
+node_modules/
+s
+# secret.js
+secret.json
+
+# 파이썬 캐시
+**/__pycache__/
+
+# mysql 이미지파일들
+mysql/img/*
+
+#package
+package*.json
+
+package*.txt

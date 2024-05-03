@@ -1,0 +1,87 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Nanum Pen Script", cursive;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 기본 스타일 설정 */
+body {
+    font-family: "Nanum Pen Script", cursive;
+    background-color: #fff5e1; /* Soft yellow background */
+    color: #333; /* Dark grey text for better readability */
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0;
+}
+.header{
+    font-size: 1.2rem;
+    background-color: #FFCC00; /* 노란색 배경 */
+    padding: 20px;
+    font-family: "Nanum Pen Script", cursive;
+    font-weight: bold;
+    text-align: center;
+}
+nav {
+    background-color: #333;
+    padding: 25px 0;
+    text-align: center;
+    width: 100%;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.6rem;
+}
+.comparison-section {
+    flex: 1;  /* flex-grow 속성 대신 flex 사용 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.list-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.list {
+    flex: 1 1 500px;  /* 각 박스가 적절히 크기 조절되도록 설정 */
+    margin: 10px;
+    padding-bottom: 16%;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    height: 300px;
+
+}
+
+.vs {
+    align-self: center;
+    font-size: 24px;
+    margin: 0 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    width: 100%;
+}
