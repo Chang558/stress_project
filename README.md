@@ -20,9 +20,10 @@
     ```bash
     pip install -r requirements.txt
     ```
-3. JSON Server를 설치합니다 (Node.js 필요).
+3. JSON Server를 설치합니다 (secret.json 필요).
     ```bash
-    npm install -g json-server
+    cd /mysql
+    make run
     ```
 
 ## 로컬에서 사용 방법
@@ -33,11 +34,11 @@
     ```
 2. 백엔드 서버를 시작합니다 (로컬 주소 사용).
     ```bash
-    uvicorn main:app --reload --host 127.0.0.1 --port 8000
+    uvicorn main:app --reload --host 192.168.1.105 --port 8000
     ```
 3. 프론트엔드 서버를 실행합니다.
     ```bash
-    npm start
+    nodemon app.js
     ```
 
 ## 데이터 구조
