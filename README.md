@@ -29,9 +29,9 @@
 ## 로컬에서 사용 방법
 
 1. JSON Server를 시작합니다 (데이터베이스 파일 지정).
-    ```bash
-    json-server --watch db.json
-    ```
+	주소창에 192.168.1.105:8000/start_jsonserver 라고 쳐주세용
+
+
 2. 백엔드 서버를 시작합니다 (로컬 주소 사용).
     ```bash
     uvicorn main:app --reload --host 192.168.1.105 --port 8000
