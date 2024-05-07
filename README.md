@@ -14,7 +14,7 @@
 
 1. 이 저장소를 클론합니다.
     ```bash
-    git clone https://github.com/yourusername/seoul-stress-analysis.git
+    git clone https://github.com/chang558/stress_project
     ```
 2. 필요한 라이브러리를 설치합니다.
     ```bash
