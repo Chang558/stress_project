@@ -1,5 +1,5 @@
 #png 파일
-*.png
+img/*.png
 
 # node_module
 node_modules/
