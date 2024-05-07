@@ -39,7 +39,7 @@
 
 2. 백엔드 서버를 시작합니다 (로컬 주소 사용).
     ```bash
-    uvicorn main:app --reload --host 192.168.1.105 --port 3000
+    uvicorn main:app --reload --host 0.0.0.0 --port 3000
     ```
 3. 프론트엔드 서버를 실행합니다.
     ```bash
