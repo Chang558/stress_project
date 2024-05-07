@@ -2,59 +2,69 @@ from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-
 import subprocess, os, json, pandas as pd, requests
 from pymongo import MongoClient
 from statistics import mean
 import numpy as np
-
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
-
 from database import db_conn
-from models import year_barGraph,region_versus,social_graph
+from models import year_barGraph, region_versus, social_graph
 from database import engine
 
 # 전역 변수 정의
 app = FastAPI()
-db = db_conn()
-session = db.sessionmaker()
 
-# secret.json파일 설정 및 경로
-secret_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) , 'secret.json')
+# MySQL 세션 생성
+db = db_conn()
+Session = db.sessionmaker
+session = Session()
+
+# secret.json 파일 설정 및 경로
+secret_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'secret.json')
 with open(secret_file) as f:
     secrets = json.loads(f.read())
+
 def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
     except KeyError:
-        errorMsg = "Set the {} environment variable.".format(setting)
-        return errorMsg
+        error_msg = "Set the {} environment variable.".format(setting)
+        return error_msg
 
 # secret.json => MySQL 설정
 HOSTNAME = get_secret("Mysql_Hostname")
 PORT = get_secret("Mysql_Port")
 USERNAME = get_secret("Mysql_Username")
 PASSWORD = get_secret("Mysql_Password")
-DBNAME = get_secret("Mysql_DBname")    
+DBNAME = get_secret("Mysql_DBname")
 
 # Font 경로 및 설정
 font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
 font_prop = FontProperties(fname=font_path)
 plt.rcParams['font.family'] = font_prop.get_name()
 
-# MongoDB 설정
-client = MongoClient('mongodb://192.168.1.105:27017')  
-db = client['project']  
-stress_collection = db['stress'] 
-stress_mean_collection = db['stress_mean']
-stress_region_collection = db['stress_region']
-social_mobility_collection = db['Social_mobility']
+# MongoDB 연결 정보 가져오기
+MONGO_HOSTNAME = secrets['MongoDB_Hostname']
+MONGO_PORT = secrets['MongoDB_Port']
+MONGO_DBNAME = secrets['MongoDB_DBname']
 
-initial_port = 5000  
+# MongoDB URI 생성
+MONGO_URI = f"mongodb://{MONGO_HOSTNAME}:{MONGO_PORT}"
 
-# cors 설정
+# MongoDB 클라이언트 생성 및 연결
+client = MongoClient(MONGO_URI)
+
+# MongoDB 컬렉션 정의
+stress_collection = client[MONGO_DBNAME]['stress']
+stress_mean_collection = client[MONGO_DBNAME]['stress_mean']
+stress_region_collection = client[MONGO_DBNAME]['stress_region']
+social_mobility_collection = client[MONGO_DBNAME]['Social_mobility']
+
+initial_port = 5000
+
+# CORS 설정
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 모든 도메인 허용
@@ -67,6 +77,11 @@ app.add_middleware(
 data_path = os.path.join(os.getcwd(), 'api_data/data')
 json_path = os.path.join(os.getcwd(), 'api_data/json')
 os.makedirs(json_path, exist_ok=True)  # json 경로가 없다면 생성
+
+# 이미지 저장 경로
+img_path = './img'
+os.makedirs(img_path, exist_ok=True)
+
 
 # FastAPI
 @app.get('/start_jsonserver')  # GET 메서드 사용
