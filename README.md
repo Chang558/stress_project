@@ -32,17 +32,14 @@
     ```
     주소창에 192.168.1.105:8000/start_jsonserver 라고 쳐주세요
     ```
-
-
-
-
-
-2. 백엔드 서버를 시작합니다 (로컬 주소 사용).
+2. 백엔드 서버를 시작합니다.
     ```bash
-    uvicorn main:app --reload --host 0.0.0.0 --port 3000
+    cd /mysql
+    make run
     ```
 3. 프론트엔드 서버를 실행합니다.
     ```bash
+    cd /public
     nodemon app.js
     ```
 
