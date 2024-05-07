@@ -20,11 +20,6 @@
     ```bash
     pip install -r requirements.txt
     ```
-3. JSON Server를 설치합니다 (secret.json 필요).
-    ```bash
-    cd /mysql
-    make run
-    ```
 
 ## 로컬에서 사용 방법
 
